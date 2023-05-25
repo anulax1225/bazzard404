@@ -1,0 +1,15 @@
+extend ../layout
+
+block content
+    .container
+        header.join-header
+            h1 #{title}
+                
+        main.join-main
+            form(method='POST' action='/chat/hub')
+                #form-groupe
+                    label(for='room') Room
+                    input.form-control.color-container(name='room', type='text')
+                br
+                input.btn.btn-primary(type='submit', value='Join Room')
+                a.btn.btn-primary.my-btn-margeur(href='/chat/room/create') Create room

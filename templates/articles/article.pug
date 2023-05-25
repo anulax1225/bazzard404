@@ -1,0 +1,17 @@
+extend ../layout 
+
+block content
+    header.join-header
+        h1 #{title} 
+    br
+    if article
+        h3= article.title 
+        h5 Written by #{author}
+        p= article.body
+        if article.image
+            img.image-mid-container(src=article.image) 
+        hr
+        if user 
+            if user._id == article.author 
+                a.btn.btn-default.color-container(href='/articles/edit/'+article._id, style='border-color: lightblue') Edit
+                a.btn.btn-danger.delete-article(href='', data-id=article._id) Delete

@@ -1,0 +1,23 @@
+extends ../layout 
+
+block content
+    header.join-header
+        h1 #{title}
+    br
+    .container
+        .container
+            form(method='POST', action='/users/register')
+                #form-groupe
+                    label Username: 
+                    input.form-control.color-container(name='username', type='text')
+                #form-groupe
+                    label Password: 
+                    input.form-control.color-container(name='password', type='password')
+                #form-groupe
+                    label Confirm Password: 
+                    input.form-control.color-container(name='password2', type='password')
+                #form-groupe
+                    label Token: 
+                    input.form-control.color-container(name='token', type='text')        
+                br
+                input.btn.btn-primary(type='submit', value='Submit')

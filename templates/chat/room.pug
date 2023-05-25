@@ -1,0 +1,35 @@
+extend ../layout
+
+block content
+    header.join-header
+        h1 #{title}
+    div.my-global-container.my-padding.my-soup-border.my-marging
+        .chat-container
+            .color-container
+                button#leave-btn.btn.color-container Leave Room
+                main.chat-main
+                    div.chat-sidebar.my-global-container.my-marging
+
+                        h3
+                            i.fas.fa-comments Other rooms:
+                        ul.list-group()#room-name
+                            each room, i in rooms
+                                li.list-group-item.color-container.shrink
+                                    a(href='/chat/room/'+room)= room 
+                        br
+                        h3
+                            i.fas.fa-users Users :
+                        ul.list-group()#users
+                            li.list-group-item.color-container.shrink Alna
+                            li.list-group-item.color-container.shrink Sam 
+                            li.list-group-item.color-container.shrink Greg 
+                            li.list-group-item.color-container.shrink Hugo 
+                            
+                    div.chat-messages.my-global-container.my-marging#chat-messages
+                .chat-form-container
+                    form#messageForm
+                        #form-group
+                        input.form-control.color-container#msgInput(type='text', placeholder='Enter Message', required='', autocomplete='off')
+                        input.btn.btn-primary#btn-Send(type='submit', value='Send')
+    script(src='/socket.io/socket.io.js')
+    script(src='/js/chatClientConsummer.js')

@@ -1,0 +1,51 @@
+doctype html 
+html 
+    head 
+        title Bazzard 404 
+        if token
+            meta#token(content=token) 
+        link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.css')
+        link(rel='stylesheet', href='/css/style.css')
+    body
+        nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.static-top
+            .container.container-fluid
+                a.navbar-brand(href='/') Bazzard 404
+                    img(src='/img/kimLogo.png', alt='...' height='55')
+                button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarSupportedContent', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+                    span.navbar-toggler-icon
+                div#navbarSupportedContent.collapse.navbar-collapse
+                    ul.nav.navbar-nav.ms-auto.narbar-right 
+                        li.nav-item
+                            a.nav-link(href='/') Home
+                        li.nav-item 
+                            a.nav-link(href='/articles/') Articles
+                        if user
+                            li.nav-item
+                                a.nav-link(href='/articles/add') Add Article
+                            li.nav-item 
+                                a.nav-link(href='/chat/hub') Hub
+                            li.nav-item
+                                a.nav-link(href='/users/profil/'+user._id) User Profile
+                            li.nav-item
+                                a.nav-link(href='/users/logout') Log out
+                        else
+                            li.nav-item
+                                a.nav-link(href='/users/register') Register
+                            li.nav-item
+                                a.nav-link(href='/users/login') Log in
+        .container
+            br 
+            if errors
+                each error, i in errors
+                    div(class="alert alert-"+typeMsg) #{error.message}
+            != messages('message', locals)
+            block content
+            br
+            br
+            div
+                footer 
+                    p Copyright ME &copy;
+            hr.buttom-line 
+        script(defer src='/bower_components/jquery/dist/jquery.js')
+        script(defer src='/bower_components/bootstrap/dist/js/bootstrap.js')
+        script(defer src='/js/main.js')
