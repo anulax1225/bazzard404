@@ -14,7 +14,6 @@ const ChatRouter = require('./routes/chat')
 const config = require('./config/database');
 const configPassport = require('./config/passport');
 const chatConsummer = require('./consumers/chatConsummer');
-const creatTok = require('./StoreNewToken')
 
 //creating web app
 const app = express();
@@ -87,8 +86,6 @@ const options = {
     key: fs.readFileSync('SSL/server.key'),
     cert: fs.readFileSync('SSL/server.crt')
 };
-
-//creatTok(15);
 
 //Setting up Server to run
 const server = https.createServer(options, app);
