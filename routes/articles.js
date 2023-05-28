@@ -104,22 +104,24 @@ router.delete('/:id', async (req, res) => {
 });
 
 //Get Single Article
-router.get('/:id', (req, res) => {
-    Article.findById(req.params.id).catch((err) => {
+router.get('/:id', async (req, res) => {
+    //find the article by id from the id in the url
+    await Article.findById(req.params.id).catch((err) => {
         if (err) {
             console.log(err)
             req.flash('danger', 'Article not found.');
             res.redirect('/articles/');
         }
-    }).then((article) => {
+    }).then(async (article) => {
         if (article) {
-        User.findById(article.author).then((user) => {
-            res.render('./articles/article.pug', {
-                title: 'Article',
-                article: article,
-                author: user.username
+            //find the user that made the article
+            await User.findById(article.author).then((user) => {
+                res.render('./articles/article.pug', {
+                    title: 'Article',
+                    article: article,
+                    author: user.username
+                });
             });
-        });
         } else {
             req.flash('danger', 'Article not found.');
             res.redirect('/articles/');
@@ -127,7 +129,9 @@ router.get('/:id', (req, res) => {
     });
 });
 
+//Get all articles
 router.get('/', (req, res) => {
+    //Query for all articles
     Article.find().then((articles, err) => {
         if(err){
             req.flash('danger', 'Articles not found')

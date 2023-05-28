@@ -1,5 +1,6 @@
 const socket = io();
 
+//Getting all the neaded componants of the page
 var divMessages = document.getElementById('chat-messages');
 var btnLeave = document.getElementById('leave-btn');
 var msgInput = document.getElementById('msgInput');
@@ -7,6 +8,8 @@ var msgForm = document.getElementById('messageForm');
 
 var username, room, token = '';
 
+//Initilisasing a new connection 
+//with the Imbeded connection string
 function initRoom() {
     var metaToken = document.getElementById('token'); 
     var components = metaToken.getAttribute('content').split('/');
@@ -20,6 +23,7 @@ function initRoom() {
     });
 }
 
+//Outputing message to the users interface
 function outputMessageDOM(msg) {
     var div = document.createElement('div');
     var pMeta = document.createElement('p');
@@ -41,6 +45,7 @@ function outputMessageDOM(msg) {
     divMessages.scrollTo(0, divMessages.scrollHeight);
 }
 
+//When the client submits a new message the socket emit it to the server
 msgForm.addEventListener('submit', (e) => {
     e.preventDefault();
     var msgData = msgInput.value;
@@ -52,27 +57,32 @@ msgForm.addEventListener('submit', (e) => {
     });
 })
 
+//Leave room
 btnLeave.addEventListener('click', (e) => {
     e.preventDefault();
     window.location.href = '/chat/hub';
 });
 
+//Get all the previous messages from room
 socket.on('fetch_messages', (msgs) => {
     msgs.forEach(msg => {
         outputMessageDOM(msg);
     });
 });
 
+//When a message is send
 socket.on('chat_message', (msg) => {
     outputMessageDOM(msg);
 });
 
+//When disconnected redirect to /chat/hub 
 socket.on('disconnect', () => {
     alert('Disconneted from chat');
+    window.location.href = '/chat/hub'
 });
-
 socket.on('disconnect_from_chat', () => {
     alert('Disconneted from chat');
+    window.location.href = '/chat/hub'
 });
 
 initRoom();

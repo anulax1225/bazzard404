@@ -4,6 +4,7 @@ var Msg = require('../models/message');
 
 const moment = require('moment');
 
+//Make socket join a room 
 function joinRoom(socket, req) {
     socket.join(req.room);
 
@@ -14,6 +15,7 @@ function joinRoom(socket, req) {
     })
 }
 
+//Messages to the database
 async function saveMsg(msg) {
     var message = new Msg({
         sender: msg.sender,
@@ -22,19 +24,19 @@ async function saveMsg(msg) {
         text: msg.text
     });
     await message.save();
-    console.log('message saved.')
 }
 
+//fetching the messages from the database to client
 async function fetchMessages(socket, req) {
     await Msg.find({ receiver:req.room }).sort({ 'time': 'asc' }).then((messages) => {
         if(messages) {
             socket.emit('fetch_messages', messages);
-            console.log('messages send' + messages)
         }
     });
 }
 
 module.exports = (io) => {
+    //core of the chat routing 
     io.on('connection', (socket) => {
 
         socket.on('join_room', (req) => {
