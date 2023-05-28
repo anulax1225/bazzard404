@@ -10,14 +10,6 @@ Le Bazzard 404 est un site web de chat en ligne et de forum.<br>
     * Entré dans des rooms pour discuté avec des gens
     * Créer une room pour débattre de nouveau sujet
 
-## Fonctionnement
-Il est totalement écris en javascript en utilisant node js comme interprêteur côté serveur.<br>
-En utilisant comme framwork principal express qui permets de créer diverse application web. 
-Le site web stock toute les données dans une base MongoDB,<br> 
-comme les utilisateurs, les articles que postent les utilisateurs, 
-les rooms de chats et leurs messages.<br>
-Les mots de passe des utilisateur sont hashé avant d'être envoie dans la base de donnée.<br>
-
 ## Installation du Bazzard 404 <br>
 
 ### Prérequis
@@ -52,15 +44,28 @@ Pour obtenir des jetons d'access écriver cette commandes dans un nouveau bash s
 ```
 (si vous refermé votre shell sans noté le resultat ne vous inquièté pas, vos jetons sont accessible depuis votre base de donner dans la collection token).<br>
 
+## Fonctionnement
+Il est totalement écris en javascript en utilisant node js comme interprêteur côté serveur.<br>
+En utilisant comme framwork principal express qui permets de créer diverse application web. 
+
+Le site web stock toute les données dans une base MongoDB,<br> 
+comme les utilisateurs, les articles que postent les utilisateurs, 
+les rooms de chats et leurs messages.<br>
+Les mots de passe des utilisateur sont hashé avant d'être envoie dans la base de donnée.<br>
+
+Les templates sont écris en pug(Jade pour les intimes), puis sont dynamiquement transformé en page HTML avant d'être envoié au client.<br>
+Le designe du site à été fait à l'aide de bootstrap.
+
 ## TO DO list
 ---
 ### Prioritaire
 ---
 * Nettoyé le code.
+* Ajouté un access par compte à la BD.
 * Ajouté une interface administrateur.
 * Ajouté une interface utilisateur pour gérer ces chatrooms.
 
-### obtionelle
+### Obtionelle
 ---
 * Pouvoir envoyé des photos dans les chatrooms.
 * Créer des chats rooms publique et privées.
