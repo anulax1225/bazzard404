@@ -35,26 +35,41 @@ Comamnde à tapez dans git bash pour lancer le Bazzard 404 sur son ordinateur :<
 
 ### Création d'un utilisateur
 Maintenant que le serveur est lancé il va vous falloir un utilisateur pour pouvoir profité pleinement des services du site.
-Mais avant de pouvoir créer un utilisateur il vous faudra des jetons d'access,<br>
+Mais avant de pouvoir créer un utilisateur il vous faudra des **jetons d'access**,<br>
 ceci son de petites chaînes de caractère aléatoire qui permettent de controllé qui peut créer un utilisateur sur le site.
 Pour obtenir des jetons d'access écriver cette commandes dans un nouveau bash shell :<br>
 
 ```bash
     node StoreNewToken Nb_Jeton_Voulu
 ```
-(si vous refermé votre shell sans noté le resultat ne vous inquièté pas, vos jetons sont accessible depuis votre base de donner dans la collection token).<br>
+*(si vous refermé votre shell sans noté le resultat ne vous inquièté pas, vos jetons sont accessible depuis votre base de donner dans la collection token)*.<br>
 
 ## Fonctionnement
-Il est totalement écris en javascript en utilisant node js comme interprêteur côté serveur.<br>
-En utilisant comme framwork principal express qui permets de créer diverse application web. 
+Il est totalement écris en *javascript* en utilisant *node js* comme interprêteur côté serveur.<br>
+En utilisant comme framwork principal *express* qui permets de créer diverse application web. 
 
-Le site web stock toute les données dans une base MongoDB,<br> 
+Le site web stock toute les données dans une base *MongoDB*,<br> 
 comme les utilisateurs, les articles que postent les utilisateurs, 
 les rooms de chats et leurs messages.<br>
 Les mots de passe des utilisateur sont hashé avant d'être envoie dans la base de donnée.<br>
+Pour accéder avec javascript à la base de donner j'ai utilisé le framework *mongoose*.
 
-Les templates sont écris en pug(Jade pour les intimes), puis sont dynamiquement transformé en page HTML avant d'être envoié au client.<br>
-Le designe du site à été fait à l'aide de bootstrap.
+Les templates sont écris en *pug*(*Jade* pour les intimes), puis sont dynamiquement transformé en page *HTML* avant d'être envoié au client.<br>
+Le designe du site à été fait à l'aide de *bootstrap*.
+
+Il y a plusieur répertoire dans se site qui sont :
+* routes : definie tout les urls vers les quels peuvent pointé mon site envoie une response par application.
+    * strategy : definie la strategy authentification des requêtes et le generateur de jeton
+* public : est le répertoire accessible depuis le client dans le quelle se trouve:
+    * bower_components : qui contient bootstrap et ces dépendances.
+    * css : qui contient mon css.
+    * js : qui contient les fichier javascript qui tourne côté client.
+    * img : qui contient les images publique du site(pas les image enregistrer par les utilisateurs).
+* templates : qui contient tout les templates des pages du site par application
+* models : qui contient tout les models de donner definie pour la base de donné.
+* consumers : qui contient le fichier permettant de lancer les chatrooms.
+* config : qui contient les diverse configuration pour la base de donner et la strategy de connection local(local c'est à dire un utilisateur sur notre base de donner.).
+
 
 ## TO DO list
 ---

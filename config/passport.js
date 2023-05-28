@@ -10,7 +10,7 @@ module.exports = (passport) => {
         var query = { username: username };
         User.findOne(query).then((user) => {
             if(!user) {
-                return done(null, false, {message: 'Username incorrect'})
+                return done(null, false, {message: 'Username or Password incorrect'})
             }
             // Match Password
             bcrypt.compare(password, user.password, (err, isMatch) => {
