@@ -47,7 +47,7 @@ $(document).ready(() => {
               body: body_input.value                       
             },
           }, (res) => {
-            console.log(res.body); 
+            window.location.href = '/articles' 
           });
         });
         image.src = reader.result;
