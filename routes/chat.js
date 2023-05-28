@@ -15,7 +15,6 @@ router.get('/hub', (req, res) => {
 router.get('/room/create',  (req, res) => {
     res.render('./chat/create_room.pug', {
        title: 'Create a new room',
-
     });
 
 });

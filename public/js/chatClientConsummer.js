@@ -57,6 +57,12 @@ btnLeave.addEventListener('click', (e) => {
     window.location.href = '/chat/hub';
 });
 
+socket.on('fetch_messages', (msgs) => {
+    msgs.forEach(msg => {
+        outputMessageDOM(msg);
+    });
+});
+
 socket.on('chat_message', (msg) => {
     outputMessageDOM(msg);
 });

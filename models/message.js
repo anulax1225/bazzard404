@@ -5,15 +5,15 @@ var msgShema = mongoose.Schema({
         type: String,
         required: true
     },
-    author:{
-        type: String,
-        required: true
-    },
     receiver:{
         type: String,
         required: true
     },
-    body:{
+    time:{
+        type: Number,
+        required: true
+    },
+    text:{
         type: String,
         required: true
     },
