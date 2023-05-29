@@ -61,6 +61,8 @@ Le designe du site à été fait à l'aide de *bootstrap*.
 
 Le core du program est dans app.js qui contient la plus part des configuration, la connection a la base de donner, le routage de home et la configuration pour routé toute les autres url depuis **./routes**.  
 
+Tout le site web fonction avec HTTT
+
 Il y a plusieur répertoire dans se site qui sont :
 * routes : definie tout les urls vers les quels peuvent pointé mon site envoie une response par application.
     * strategy : definie la strategy authentification des requêtes et le generateur de jeton
@@ -99,11 +101,13 @@ Il y a plusieur répertoire dans se site qui sont :
 * Creer des utilisateurs.
 * Creer une strategy local de connection.
 * Lié les articles au utilisateur.
-* Ajouté le hub
-* Creer des room si on est utilisateur
-* Entrer dans une room
-* Voir les messages des autres utilisateurs
-* Voir les noms d'utilisateur et le temps 
-* Enregistrer les messages 
+* Ajouté le hub.
+* Creer des room si on est utilisateur.
+* Entrer dans une room.
+* Voir les messages des autres utilisateurs.
+* Voir les noms d'utilisateur et le temps. 
+* Enregistrer les messages. 
+* Code nettoyé.
+* README.md écris.
 
 
