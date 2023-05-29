@@ -68,7 +68,7 @@ app.use('/articles', ArticleRouter);
 app.use('/users', UsersRouter);
 app.use('/chat', ChatRouter);
 
-//For all routes if user != null req = user
+//For all routes if user != null => req = user
 app.get('*', (req, res, next) => {
     res.app.locals.user = req.user
     next();
@@ -95,7 +95,3 @@ chatConsummer(io);
 server.listen(80, () => {
     console.log('listening on *:80');
 });
-
-
-
-

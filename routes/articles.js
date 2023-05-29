@@ -9,7 +9,7 @@ const userAuth = require('./strategy/authentificate.js')
 
 
 //ADD article rooute 
-router.get('/add', userAuth, async (req, res) => {
+router.get('/add', userAuth, (req, res) => {
     res.render('./articles/add_article.pug', {
         title: 'Add Article'
     });

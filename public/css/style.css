@@ -15,11 +15,6 @@ body {
     color: var(--front-color);
 }
 
-.my-page-footer {
-	position: absolute;
-	bottom: 0;
-}
-
 .color-container {
     background-color: var(--back-color-app);
     border-color: var(--front-color);
@@ -75,6 +70,15 @@ body {
 .shrink {
 	margin-block: initial;
 	padding-block: initial;
+}
+
+.my-textarea {
+	height : 10em;
+}
+
+.my-page-footer {
+	position: absolute;
+	bottom: 0;
 }
 
 .my-global-container {

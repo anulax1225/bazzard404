@@ -39,9 +39,9 @@ module.exports = (io) => {
     //core of the chat routing 
     io.on('connection', (socket) => {
 
-        socket.on('join_room', (req) => {
+        socket.on('join_room', async (req) => {
             //Find the user object by username
-            User.findOne({username: req.username}).catch((err) => {
+            await User.findOne({username: req.username}).catch((err) => {
                 if(err) {
                     //If false username
                     socket.emit('disconnect_from_chat');

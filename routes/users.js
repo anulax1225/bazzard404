@@ -9,11 +9,11 @@ var User = require('../models/user');
 var Article = require('../models/article');
 var Room = require('../models/room');
 
-function inTokens(authToken) {
-    Token.findOne({ token: authToken }).then((auth) => {
+async function inTokens(authToken) {
+    await Token.findOne({ token: authToken }).then(async (auth) => {
         if(auth) { 
             if(auth.token === authToken) {
-                Token.findByIdAndRemove(auth._id).catch((err) => {
+                await Token.findByIdAndRemove(auth._id).catch((err) => {
                     if (err) {
                         console.log(err);
                     }
@@ -33,7 +33,7 @@ router.get('/register', (req, res) => {
     });
 });
 
-router.post('/register', (req, res) => {
+router.post('/register', async (req, res) => {
     var errors = [];
 
     const username = req.body.username;
@@ -54,7 +54,7 @@ router.post('/register', (req, res) => {
         errors.push({ message: 'Sorry the password must be at least 5 characters long' });
     }
 
-    if (inTokens(token)) {
+    if (await inTokens(token)) {
         errors.push({ message: 'Invalide token'})
     }
 
@@ -76,12 +76,12 @@ router.post('/register', (req, res) => {
                 if(err) {
                     console.log(err);
                 } else {
-                    bcrypt.hash(newUser.password, salt, (err, hash) => {
+                    bcrypt.hash(newUser.password, salt, async (err, hash) => {
                         if(err) {
                             console.log(err);
                         } else {
                             newUser.password = hash;
-                            newUser.save();
+                            await newUser.save();
                             req.flash('success', 'User created');
                             res.redirect('/users/login');
                         }  
@@ -115,23 +115,23 @@ router.get('/logout', (req, res) => {
     res.redirect('/users/login')
 });
 
-router.get('/profil/:id', (req, res) => {
-    User.findById(req.params.id).catch((err) => {
+router.get('/profil/:id', async (req, res) => {
+    await User.findById(req.params.id).catch((err) => {
         if (err) {
             req.flash('danger', 'User not found.');
             res.redirect('/');
         }
-    }).then((user) => {
-        Article.find({ author: user.id }).catch((err) => {   
+    }).then(async (user) => {
+        await Article.find({ author: user.id }).catch((err) => {   
             if(err) {
                 req.flash('danger', 'Probleme');
                 res.redirect('/');
             }
-        }).then((articles) => {
+        }).then(async (articles) => {
             if (articles.length == 0) {
                 articles = null;
             }
-            Room.find({ room_owner: user.id}).then((rooms) => {
+            await Room.find({ room_owner: user.id}).then((rooms) => {
                 var lsRooms = [];
                 if(rooms.length == 0) {
                     lsRooms = null;

@@ -5,9 +5,10 @@ block content
         h1 #{title} 
     br
     if article
-        h3= article.title 
+        h3 Title : #{article.title} 
         h5 Written by #{author}
-        p= article.body
+        br
+        p Content : #{article.body}
         if article.image
             img.image-mid-container(src=article.image) 
         hr

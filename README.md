@@ -24,7 +24,7 @@ Tapez ces commandes dans mongo shell après vous être connectez au serveur :
     db.createUser({ user:"Nom_utilisateur", pwd: "mot_passe", roles: [{ role: "readWrite", db: "nom_de_la_base_de_donnee"  }] })
 ```
 Vous devez aussi aller modifier le fichier /mongodb/server/6.0/bin/mongod.cfg
-```json
+```text
     #security:
     #||
     #\/
@@ -43,7 +43,7 @@ voici le lien pour pouvoir installer [node js](https://nodejs.org/en) (il est co
 ### Commandes d'installation du serveur
 Comamnde à tapez dans git bash pour lancer le Bazzard 404 sur son ordinateur :<br>
 ```bash
-    md Bazzard404
+    mkdir Bazzard404
     cd Bazzard404
     git remote add origin "https://git.s2.rpn.ch/AmbigapathyV/sitewebroom.git"
     git pull origin main
@@ -62,7 +62,7 @@ Pour obtenir des jetons d'access écriver cette commandes dans un nouveau bash s
 ```
 *(si vous refermé votre shell sans noté le resultat ne vous inquièté pas, vos jetons sont accessible depuis votre base de donner dans la collection token)*.<br>
 
-Et voila vous pouvez directement vous connecté en localhost ou en entrant l'addresse IP de votre ordinateur. 
+Et voila vous pouvez directement vous connecté en localhost ou en entrant l'addresse IP de votre ordinateur et découvrir le site. 
 
 ## Fonctionnement
 
@@ -73,9 +73,11 @@ En utilisant comme framwork principal *express* qui permets de créer diverse ap
 Le core du program est dans app.js qui contient la plus part des configuration, la connection a la base de donner, le routage de home et la configuration pour routé toute les autres url depuis **./routes**.  
 
 Les templates sont écris en *pug*(*Jade* pour les intimes), puis sont dynamiquement transformé en page *HTML* avant d'être envoié au client.<br>
-Le designe du site à été fait à l'aide de *bootstrap*.
+Le designe du site à été fait à l'aide de *bootstrap*. 
 
-Le site web stock toute les données dans une base *MongoDB*,<br> 
+L'authentification d'une session se fait avec *passport* un autre module disponible avec *node js*. 
+
+Le site web stock toute les données dans une base *MongoDB*,
 comme les utilisateurs, les articles que postent les utilisateurs, 
 les rooms de chats et leurs messages.<br>
 Les mots de passe des utilisateur sont hashé avant d'être envoie dans la base de donnée.<br>
@@ -111,8 +113,8 @@ Vous trouverez plusieur répertoire avec différente utilité:
 Il exist plusieur type d'accessait au site :
 * Non-authentifier : Accessait lecture des articles.
 * Utilisateur : Accessait de creation, edition et supprésion de ses articles, 
-    creation de room et possibilité d'aller discuté dans les rooms. Access à son profile utilisateur.
-* Administrateur : Accessait au au profile de tout les utilisateurs, access a toute les chats rooms.
+    creation de room et possibilité d'aller discuté dans les rooms. Accessait à son profile utilisateur.
+* Administrateur : Accessait au au profile de tout les utilisateurs, accessait a toute les chats rooms.
 
 ## TO DO liste
 ---

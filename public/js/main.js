@@ -31,7 +31,7 @@ $(document).ready(() => {
       var image = document.createElement('img');
       var canvas = document.createElement('canvas');
       //Reading image as DATAurl then resizing it
-      reader.addEventListener('load', async () => {
+      reader.addEventListener('load', () => {
         image.addEventListener('load', async () => {
 
           var ratio = 100 / image.width;
