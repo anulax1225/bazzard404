@@ -5,14 +5,24 @@ block content
         h1 #{title} 
     br
 
-    h3 Username : #{user.username}
+    h3 Username : #{user}
     if articles
         h5 Written articles :
         ul.list-group()
             each article, i in articles
                 li.list-group-item.color-container 
-                    a(href='/articles/'+article.id)= article.title
+                    a.page-link(href='/articles/'+article.id)= article.title
     else 
-        p.color-container User didn't poste any articles.
+        p.alert-undefined User didn't poste any articles.
+    br
+    if rooms 
+        h5 Owner of the rooms :
+        ul.list-group()
+            each room, i in rooms
+                li.list-group-item.color-container 
+                    a.page-link(href='/chat/room/'+room)= room
+    else 
+        p.alert-undefined User didn't create any room.
+
 
 

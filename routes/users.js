@@ -6,7 +6,8 @@ const router = express.Router();
 
 var Token = require('../models/token');
 var User = require('../models/user');
-const Article = require('../models/article');
+var Article = require('../models/article');
+var Room = require('../models/room');
 
 function inTokens(authToken) {
     Token.findOne({ token: authToken }).then((auth) => {
@@ -121,20 +122,32 @@ router.get('/profil/:id', (req, res) => {
             res.redirect('/');
         }
     }).then((user) => {
-        Article.find({ author: user.id }).catch((err) => {   
+        Article.find({ author: user._id }).catch((err) => {   
             if(err) {
                 req.flash('danger', 'Probleme');
                 res.redirect('/');
             }
         }).then((articles) => {
-            res.render('./users/user_profil.pug', {
-                title: 'User profil',
-                userLog: req.user,
-                user: user,
-                articles: articles
+            if (articles.length == 0) {
+                articles = null;
+            }
+            Room.find({ room_owner: user._id}).then((rooms) => {
+                var lsRooms = [];
+                if(rooms.length == 0) {
+                    lsRooms = null;
+                } else {
+                    rooms.forEach(room => lsRooms.push(room.room_name));
+                }
+                res.render('./users/user_profil.pug', {
+                    title: 'User profil',
+                    userLog: req.user,
+                    user: user.username,
+                    articles: articles,
+                    rooms: lsRooms
+                });
             });
-        })
-    })
-})
+        });
+    });
+});
 
 module.exports = router;

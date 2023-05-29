@@ -1,21 +1,22 @@
+
 $(document).ready(() => {
-    //When the delete button is pressed
-    $('.delete-article').on('click', async (e) => {
-        $target = $(e.target);
-        const id = $target.attr('data-id');
-        //Send ajax request of DELETE to /articles/id 
-        await $.ajax({
-            type:'DELETE',
-            url: '/articles/'+id,
-            success: function(response){
-              alert('Article deleted.')
-              window.location.href='/articles/';
-            },
-            error: function(err){
-              window.location.href='/articles/';
-            }
-          });
-    });
+  //When the delete button is pressed
+  $('.delete-article').on('click', async (e) => {
+      var $target = $(e.target);
+      const id = $target.attr('data-id');
+      //Send ajax request of DELETE to /articles/id 
+      await $.ajax({
+          type:'DELETE',
+          url: '/articles/'+id,
+          success: function(response){
+            alert('Article deleted.')
+            window.location.href='/articles/';
+          },
+          error: function(err){
+            window.location.href='/articles/';
+          }
+        });
+  });
 });
 
 
@@ -33,14 +34,14 @@ $(document).ready(() => {
       reader.addEventListener('load', async () => {
         image.addEventListener('load', async () => {
 
-          ratio = 100 / image.width;
+          var ratio = 100 / image.width;
           canvas.width = 100;
           canvas.height = image.height * ratio;
   
           var context = canvas.getContext('2d');
           context.drawImage(image, 0, 0, canvas.width, canvas.height);
 
-          shrink_image = context.canvas.toDataURL(image_file.type);
+          var shrink_image = context.canvas.toDataURL(image_file.type);
           var name_input = document.getElementById('title_input');
           var body_input = document.getElementById('body_input');
           //Send ajax request of POST to /articles/add

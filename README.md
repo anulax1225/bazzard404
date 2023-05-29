@@ -26,12 +26,12 @@ voici le lien pour pouvoir installer [node js](https://nodejs.org/en) (il est co
 ### Commandes d'installation du serveur
 Comamnde à tapez dans git bash pour lancer le Bazzard 404 sur son ordinateur :<br>
 ```bash
-    md Bazzard404no
+    md Bazzard404
     cd Bazzard404
     git remote add origin "https://git.s2.rpn.ch/AmbigapathyV/sitewebroom.git"
     git pull origin main
     npm install
-    npm run dev
+    npm run start
 ```
 
 ### Création d'un utilisateur

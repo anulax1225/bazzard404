@@ -40,6 +40,15 @@ body {
     border-color: #ebccd1;
 }
 
+.alert-undefined {
+	border: 15px;
+	padding: 15px;
+	border-radius: 5px;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
 .image-mid-container {
     width: 30%;
     height: 30%;

@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
 
 const RoomShema =  mongoose.Schema({
+    room_owner: {
+        type: String,
+        require: true
+    },
     room_name: {
         type: String,
-        required:  true,
+        required: true,
         unique: true
     },
     room_state: {
