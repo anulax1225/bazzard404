@@ -76,7 +76,7 @@ Il y a plusieur répertoire dans se site qui sont :
 * SSL : **Il est très déconseiller de réutilisé les certificas SSL or d'un réseau privé ou pour une utilisation public.**
 
 
-## TO DO list
+## TO DO liste
 ---
 ### Prioritaire
 ---
@@ -90,4 +90,20 @@ Il y a plusieur répertoire dans se site qui sont :
 * Pouvoir envoyé des photos dans les chatrooms.
 * Créer des chats rooms publique et privées.
 * Pouvoir incrusté un article dans une conversation.
+
+## Major Upgrade
+* Creer un article.
+* Ajouté article a la BD.
+* Editer un article.
+* Supprimer un article.
+* Creer des utilisateurs.
+* Creer une strategy local de connection.
+* Lié les articles au utilisateur.
+* Ajouté le hub
+* Creer des room si on est utilisateur
+* Entrer dans une room
+* Voir les messages des autres utilisateurs
+* Voir les noms d'utilisateur et le temps 
+* Enregistrer les messages 
+
 
