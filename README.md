@@ -61,7 +61,7 @@ Le designe du site à été fait à l'aide de *bootstrap*.
 
 Le core du program est dans app.js qui contient la plus part des configuration, la connection a la base de donner, le routage de home et la configuration pour routé toute les autres url depuis **./routes**.  
 
-Tout le site web fonction avec HTTT
+Tout le site web fonction avec HTTP get, post et ajax delete. Mais pour le chat en live la connection est upgrad a websocket. Et toute la logique pour la connection en websocket se trouvent dans **./consumers**
 
 Il y a plusieur répertoire dans se site qui sont :
 * routes : definie tout les urls vers les quels peuvent pointé mon site envoie une response par application.
@@ -94,20 +94,20 @@ Il y a plusieur répertoire dans se site qui sont :
 * Pouvoir incrusté un article dans une conversation.
 
 ## Major Upgrade
-* Creer un article.
-* Ajouté article a la BD.
-* Editer un article.
-* Supprimer un article.
-* Creer des utilisateurs.
-* Creer une strategy local de connection.
-* Lié les articles au utilisateur.
-* Ajouté le hub.
-* Creer des room si on est utilisateur.
-* Entrer dans une room.
-* Voir les messages des autres utilisateurs.
-* Voir les noms d'utilisateur et le temps. 
-* Enregistrer les messages. 
-* Code nettoyé.
-* README.md écris.
+1. Creer un article.
+1. Ajouté article a la BD.
+1. Editer un article.
+1. Supprimer un article.
+1. Creer des utilisateurs.
+1. Creer une strategy local de connection.
+1. Lié les articles au utilisateur.
+1. Ajouté le hub.
+1. Creer des room si on est utilisateur.
+1. Entrer dans une room.
+1. Voir les messages des autres utilisateurs.
+1. Voir les noms d'utilisateur et le temps. 
+1. Enregistrer les messages. 
+1. Code nettoyé.
+1. README.md écris.
 
 
