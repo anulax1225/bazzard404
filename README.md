@@ -44,6 +44,8 @@ Pour obtenir des jetons d'access écriver cette commandes dans un nouveau bash s
 ```
 *(si vous refermé votre shell sans noté le resultat ne vous inquièté pas, vos jetons sont accessible depuis votre base de donner dans la collection token)*.<br>
 
+Et voila vous pouvez directement vous connecté en localhost ou en entrant l'addresse IP de votre ordinateur. 
+
 ## Fonctionnement
 Il est totalement écris en *javascript* en utilisant *node js* comme interprêteur côté serveur.<br>
 En utilisant comme framwork principal *express* qui permets de créer diverse application web. 
@@ -57,6 +59,8 @@ Pour accéder avec javascript à la base de donner j'ai utilisé le framework *m
 Les templates sont écris en *pug*(*Jade* pour les intimes), puis sont dynamiquement transformé en page *HTML* avant d'être envoié au client.<br>
 Le designe du site à été fait à l'aide de *bootstrap*.
 
+Le core du program est dans app.js qui contient la plus part des configuration, la connection a la base de donner, le routage de home et la configuration pour routé toute les autres url depuis **./routes**.  
+
 Il y a plusieur répertoire dans se site qui sont :
 * routes : definie tout les urls vers les quels peuvent pointé mon site envoie une response par application.
     * strategy : definie la strategy authentification des requêtes et le generateur de jeton
@@ -69,13 +73,14 @@ Il y a plusieur répertoire dans se site qui sont :
 * models : qui contient tout les models de donner definie pour la base de donné.
 * consumers : qui contient le fichier permettant de lancer les chatrooms.
 * config : qui contient les diverse configuration pour la base de donner et la strategy de connection local(local c'est à dire un utilisateur sur notre base de donner.).
+* SSL : **Il est très déconseiller de réutilisé les certificas SSL or d'un réseau privé ou pour une utilisation public.**
 
 
 ## TO DO list
 ---
 ### Prioritaire
 ---
-* Nettoyé le code.
+* Nettoyé le code (Bien avancé).
 * Ajouté un access par compte à la BD.
 * Ajouté une interface administrateur.
 * Ajouté une interface utilisateur pour gérer ces chatrooms.
