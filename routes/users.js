@@ -122,7 +122,7 @@ router.get('/profil/:id', (req, res) => {
             res.redirect('/');
         }
     }).then((user) => {
-        Article.find({ author: user._id }).catch((err) => {   
+        Article.find({ author: user.id }).catch((err) => {   
             if(err) {
                 req.flash('danger', 'Probleme');
                 res.redirect('/');
@@ -131,7 +131,7 @@ router.get('/profil/:id', (req, res) => {
             if (articles.length == 0) {
                 articles = null;
             }
-            Room.find({ room_owner: user._id}).then((rooms) => {
+            Room.find({ room_owner: user.id}).then((rooms) => {
                 var lsRooms = [];
                 if(rooms.length == 0) {
                     lsRooms = null;

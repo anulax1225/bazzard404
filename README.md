@@ -3,21 +3,38 @@
 ## Résumer
 Le Bazzard 404 est un site web de chat en ligne et de forum.<br>
 
-### Autorisation
+### Possibilité
 * Sans avoir log in(si vous n'etes pas enregistré avec un utilisateur valide), vous ne pourez que voir les publications des utilisateurs.
 * Si vous etes log in vous pourrez :
     * Créer, edité, supprimé vos articles
     * Entré dans des rooms pour discuté avec des gens
     * Créer une room pour débattre de nouveau sujet
+    * Vous aurez aussi access à un espace utilisateur nommé **User Profile**<br>
+    qui vous donne access facilement à un sommaire de vos activité sur le site
 
 ## Installation du Bazzard 404 <br>
 
 ### Prérequis
-* Le Bazzard 404 utilise une base de donné mongoDB, il est donc neccessaire dans avoir une apporté de main ou dans installer une localement avec l'installeur de [mongoDB](https://www.mongodb.com/try/download/community).
+* Le Bazzard 404 utilise une base de donné mongoDB, il est donc neccessaire dans avoir une apporté de main ou dans installer une localement avec l'installeur de [mongoDB](https://www.mongodb.com/try/download/community), il est aussi conseillé d'installé mongo shell dans le même onglet pour pouvoir faire les manipulations qui suivent.
+Une fois le serveur en place, vous créez une base de donnée pour le site et un utilisateur pour pouvoir vous connectez à la base de donnée.
+Tapez ces commandes dans mongo shell après vous être connectez au serveur :
+```javascript
+    use nom_de_la_base_de_donnee
+    use admin
+    db.createUser({ user:"Nom_utilisateur", pwd: "mot_passe", roles: [{ role: "readWrite", db: "nom_de_la_base_de_donnee"  }] })
+```
+Vous devez aussi aller modifier le fichier /mongodb/server/6.0/bin/mongod.cfg
+```json
+    #security:
+    #||
+    *\/
+    security:
+        authentification: "enabled"
+```
 Puis il faudra modifier le fichier /config/database.js pour mettre le lien de connection à votre base de donnée : 
 ```javascript
     module.exports = {
-    database: 'mongodb://IP_base_de_donner:PORT/nom_base_de_donner'
+    database: 'mongodb://nom_utilisateur:mot_passe@IP_base_de_donner:PORT/nom_base_de_donner'
     }
 ```
 * Il faut aussi installé node js pour pouvoir installer le packet avec npm et pouvoir lancer le serveur,<br> 
@@ -48,6 +65,8 @@ Pour obtenir des jetons d'access écriver cette commandes dans un nouveau bash s
 Et voila vous pouvez directement vous connecté en localhost ou en entrant l'addresse IP de votre ordinateur. 
 
 ## Fonctionnement
+
+### Farmeworks
 Il est totalement écris en *javascript* en utilisant *node js* comme interprêteur côté serveur.<br>
 En utilisant comme framwork principal *express* qui permets de créer diverse application web. 
 
@@ -62,11 +81,12 @@ les rooms de chats et leurs messages.<br>
 Les mots de passe des utilisateur sont hashé avant d'être envoie dans la base de donnée.<br>
 Pour accéder avec javascript à la base de donner j'ai utilisé le framework *mongoose*.
 
-Tout le site web fonction avec HTTP get, post et ajax delete. Mais pour le chat en live la connection est upgrad a websocket. Et toute la logique pour la connection en websocket se trouvent dans **./consumers**.
+Tout le site web fonction avec HTTP get, post et ajax delete. Mais pour le chat en live la connection est upgrad a websocket. Et toute la logique pour la connection en websocket se trouvent dans **./consumers/chatConsummer**.
 
 La connexion est en *HTTPS* et est établie avec avec des certificate auto signé, un rootCA directement disponible sur le site permettant de l'ajouté au certifica autorisé par votre navigateur. Celui-ci permets authantifier le certifica du serveur.
 L'autre certifica est celui du serveur permettant d'etablir la connexion en *HTTPS* avec le client. Cette methode n'est pas la plus sur, mais permet une inplémentation simple de *l'HTTPS*.
 
+### Répertoire
 Vous trouverez plusieur répertoire avec différente utilité:
 
 * routes : definie tout les urls vers les quels peuvent pointé mon site envoie une response par application.
@@ -86,6 +106,13 @@ Vous trouverez plusieur répertoire avec différente utilité:
 * SSL : contient les certificate SSL neccessaire à une connexion en https<br> 
 **Il est très déconseiller de réutilisé ces certificas SSL or d'un réseau privé ou pour une utilisation réelle, ceci ne servent que d'exemple.**
 
+### Autorisation 
+
+Il exist plusieur type d'accessait au site :
+* Non-authentifier : Accessait lecture des articles.
+* Utilisateur : Accessait de creation, edition et supprésion de ses articles, 
+    creation de room et possibilité d'aller discuté dans les rooms. Access à son profile utilisateur.
+* Administrateur : Accessait au au profile de tout les utilisateurs, access a toute les chats rooms.
 
 ## TO DO liste
 ---
@@ -93,8 +120,7 @@ Vous trouverez plusieur répertoire avec différente utilité:
 ### Prioritaire
 ---
 * Nettoyé le code (Bien avancé).
-* Ajouté un access par compte à la BD.
-* Ajouté une interface administrateur.
+* Ajouté des fonctions asynchrones pour query la base de donnée.
 * Ajouté une interface utilisateur pour gérer ces chatrooms.
 
 ### Annexe
@@ -102,6 +128,7 @@ Vous trouverez plusieur répertoire avec différente utilité:
 * Pouvoir envoyé des photos dans les chatrooms.
 * Créer des chats rooms publique et privées.
 * Pouvoir incrusté un article dans une conversation.
+* Ajouté une interface administrateur.
 
 ## Major Upgrade
 ---
@@ -121,5 +148,6 @@ Vous trouverez plusieur répertoire avec différente utilité:
 1. Enregistrer les messages. 
 1. Code nettoyé.
 1. README.md écris.
-
+1. Interface vision des données utilisateurs pour les utilisateurs.
+1. Ajouté un access par compte à la BD.
 
