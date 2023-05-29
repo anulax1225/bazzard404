@@ -29,7 +29,7 @@ block content
                 .chat-form-container
                     form#messageForm
                         #form-group
-                        input.form-control.color-container#msgInput(type='text', placeholder='Enter Message', required='', autocomplete='off')
+                        input.form-control.color-container#msgInput(type='text', placeholder='Enter Message', required, autocomplete='off')
                         input.btn.btn-primary#btn-Send(type='submit', value='Send')
     script(src='/socket.io/socket.io.js')
     script(src='/js/chatClientConsummer.js')

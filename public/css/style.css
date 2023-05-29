@@ -15,6 +15,11 @@ body {
     color: var(--front-color);
 }
 
+.my-page-footer {
+	position: absolute;
+	bottom: 0;
+}
+
 .color-container {
     background-color: var(--back-color-app);
     border-color: var(--front-color);

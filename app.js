@@ -92,8 +92,8 @@ const server = https.createServer(options, app);
 const io = new Server(server);
 chatConsummer(io);
 
-server.listen(8000, () => {
-    console.log('listening on *:8000');
+server.listen(80, () => {
+    console.log('listening on *:80');
 });
 
 
