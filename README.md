@@ -27,7 +27,7 @@ Vous devez aussi aller modifier le fichier /mongodb/server/6.0/bin/mongod.cfg
 ```json
     #security:
     #||
-    *\/
+    #\/
     security:
         authentification: "enabled"
 ```
