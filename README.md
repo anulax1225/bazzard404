@@ -50,36 +50,45 @@ Et voila vous pouvez directement vous connecté en localhost ou en entrant l'add
 Il est totalement écris en *javascript* en utilisant *node js* comme interprêteur côté serveur.<br>
 En utilisant comme framwork principal *express* qui permets de créer diverse application web. 
 
+Le core du program est dans app.js qui contient la plus part des configuration, la connection a la base de donner, le routage de home et la configuration pour routé toute les autres url depuis **./routes**.  
+
+Les templates sont écris en *pug*(*Jade* pour les intimes), puis sont dynamiquement transformé en page *HTML* avant d'être envoié au client.<br>
+Le designe du site à été fait à l'aide de *bootstrap*.
+
 Le site web stock toute les données dans une base *MongoDB*,<br> 
 comme les utilisateurs, les articles que postent les utilisateurs, 
 les rooms de chats et leurs messages.<br>
 Les mots de passe des utilisateur sont hashé avant d'être envoie dans la base de donnée.<br>
 Pour accéder avec javascript à la base de donner j'ai utilisé le framework *mongoose*.
 
-Les templates sont écris en *pug*(*Jade* pour les intimes), puis sont dynamiquement transformé en page *HTML* avant d'être envoié au client.<br>
-Le designe du site à été fait à l'aide de *bootstrap*.
+Tout le site web fonction avec HTTP get, post et ajax delete. Mais pour le chat en live la connection est upgrad a websocket. Et toute la logique pour la connection en websocket se trouvent dans **./consumers**.
 
-Le core du program est dans app.js qui contient la plus part des configuration, la connection a la base de donner, le routage de home et la configuration pour routé toute les autres url depuis **./routes**.  
+La connexion est en *HTTPS* et est établie avec avec des certificate auto signé, un rootCA directement disponible sur le site permettant de l'ajouté au certifica autorisé par votre navigateur. Celui-ci permets authantifier le certifica du serveur.
+L'autre certifica est celui du serveur permettant d'etablir la connexion en *HTTPS* avec le client. Cette methode n'est pas la plus sur, mais permet une inplémentation simple de *l'HTTPS*.
 
-Tout le site web fonction avec HTTP get, post et ajax delete. Mais pour le chat en live la connection est upgrad a websocket. Et toute la logique pour la connection en websocket se trouvent dans **./consumers**
+Vous trouverez plusieur répertoire avec différente utilité:
 
-Il y a plusieur répertoire dans se site qui sont :
 * routes : definie tout les urls vers les quels peuvent pointé mon site envoie une response par application.
     * strategy : definie la strategy authentification des requêtes et le generateur de jeton
+
 * public : est le répertoire accessible depuis le client dans le quelle se trouve:
-    * bower_components : qui contient bootstrap et ces dépendances.
-    * css : qui contient mon css.
-    * js : qui contient les fichier javascript qui tourne côté client.
-    * img : qui contient les images publique du site(pas les image enregistrer par les utilisateurs).
-* templates : qui contient tout les templates des pages du site par application
-* models : qui contient tout les models de donner definie pour la base de donné.
-* consumers : qui contient le fichier permettant de lancer les chatrooms.
-* config : qui contient les diverse configuration pour la base de donner et la strategy de connection local(local c'est à dire un utilisateur sur notre base de donner.).
-* SSL : **Il est très déconseiller de réutilisé les certificas SSL or d'un réseau privé ou pour une utilisation public.**
+    * bower_components : contient bootstrap et ces dépendances(don't jquery).
+    * css : contient mon css.
+    * js : contient les fichier javascript qui tourne côté client.
+    * img : contient les images publique du site(pas les image enregistrer par les utilisateurs).
+    * SSL : contient le certifica autosigné RootCA
+
+* templates : contient tout les templates des pages du site par application
+* models : contient tout les models de donner definie pour la base de donné.
+* consumers : contient le fichier permettant de lancer les chatrooms.
+* config : contient les diverse configuration pour la base de donner et la strategy de connection local(local c'est à dire un utilisateur sur notre base de donner.).
+* SSL : contient les certificate SSL neccessaire à une connexion en https<br> 
+**Il est très déconseiller de réutilisé ces certificas SSL or d'un réseau privé ou pour une utilisation réelle, ceci ne servent que d'exemple.**
 
 
 ## TO DO liste
 ---
+
 ### Prioritaire
 ---
 * Nettoyé le code (Bien avancé).
@@ -87,13 +96,15 @@ Il y a plusieur répertoire dans se site qui sont :
 * Ajouté une interface administrateur.
 * Ajouté une interface utilisateur pour gérer ces chatrooms.
 
-### Obtionelle
+### Annexe
 ---
 * Pouvoir envoyé des photos dans les chatrooms.
 * Créer des chats rooms publique et privées.
 * Pouvoir incrusté un article dans une conversation.
 
 ## Major Upgrade
+---
+
 1. Creer un article.
 1. Ajouté article a la BD.
 1. Editer un article.

@@ -184,6 +184,10 @@ body {
 	}
 }
 
+.invisible {
+	opacity: 0;
+}
+
 #btn-Send {
 	margin-left: 10px;
 }
