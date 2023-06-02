@@ -32,6 +32,8 @@ router.post('/room/create', userAuth, async (req, res) => {
             res.redirect('/chat/hub');
         });
     } catch(err) {
+        req.flash('danger', "Couldn't creat room");
+        res.redirect('/chat/room/create')
         console.log(err);
     }
 });

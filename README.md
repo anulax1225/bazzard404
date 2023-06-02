@@ -121,9 +121,11 @@ Il exist plusieur type d'accessait au site :
 
 ### Prioritaire
 ---
-* Nettoyé le code (Bien avancé).
-* Ajouté des fonctions asynchrones pour query la base de donnée.
+* Filtrer les inputs utilisateurs.
+* Empêché les injections de base de donnée et les injections. 
+* Empêché les injection pug et javascript.
 * Ajouté une interface utilisateur pour gérer ces chatrooms.
+* Nettoyé le code (Bien avancé).
 
 ### Annexe
 ---
@@ -131,8 +133,10 @@ Il exist plusieur type d'accessait au site :
 * Créer des chats rooms publique et privées.
 * Pouvoir incrusté un article dans une conversation.
 * Ajouté une interface administrateur.
+* Creer un service VOIP.
+* 
 
-## Major Upgrade
+## Ajout
 ---
 
 1. Creer un article.
@@ -152,4 +156,5 @@ Il exist plusieur type d'accessait au site :
 1. README.md écris.
 1. Interface vision des données utilisateurs pour les utilisateurs.
 1. Ajouté un access par compte à la BD.
+1. Ajouté des fonctions asynchrones pour query la base de donnée.
 

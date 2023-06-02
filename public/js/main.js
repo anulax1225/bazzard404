@@ -53,8 +53,6 @@ $(document).ready(() => {
               image: shrink_image,
               body: body_input.value                       
             },
-          }, (res) => {
-            window.location.href = '/articles' 
           });
         });
         image.src = reader.result;

@@ -3,6 +3,7 @@ const passport = require('passport')
 const bcrypt = require('bcryptjs');
 const express = require('express');
 const router = express.Router();
+const userAuth = require('./strategy/authentificate.js')
 
 var Token = require('../models/token');
 var User = require('../models/user');
@@ -115,7 +116,7 @@ router.get('/logout', (req, res) => {
     res.redirect('/users/login')
 });
 
-router.get('/profil/:id', async (req, res) => {
+router.get('/profil/:id', userAuth, async (req, res) => {
     await User.findById(req.params.id).catch((err) => {
         if (err) {
             req.flash('danger', 'User not found.');
