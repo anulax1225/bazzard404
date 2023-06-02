@@ -19,9 +19,9 @@ Le Bazzard 404 est un site web de chat en ligne et de forum.<br>
 Une fois le serveur en place, vous créez une base de donnée pour le site et un utilisateur pour pouvoir vous connectez à la base de donnée.
 Tapez ces commandes dans mongo shell après vous être connectez au serveur :
 ```javascript
-    use nom_de_la_base_de_donnee
+    use bazzard404
     use admin
-    db.createUser({ user:"Nom_utilisateur", pwd: "mot_passe", roles: [{ role: "readWrite", db: "nom_de_la_base_de_donnee"  }] })
+    db.createUser({ user:"Nom_utilisateur", pwd: "mot_passe", roles: [{ role: "readWrite", db: "bazzard404"  }] })
 ```
 Vous devez aussi aller modifier le fichier /mongodb/server/6.0/bin/mongod.cfg
 ```text
@@ -34,7 +34,7 @@ Vous devez aussi aller modifier le fichier /mongodb/server/6.0/bin/mongod.cfg
 Puis il faudra modifier le fichier /config/database.js pour mettre le lien de connection à votre base de donnée : 
 ```javascript
     module.exports = {
-    database: 'mongodb://nom_utilisateur:mot_passe@IP_base_de_donner:PORT/nom_base_de_donner'
+    database: 'mongodb://nom_utilisateur:mot_passe@IP_base_de_donner:PORT/bazzard404'
     }
 ```
 * Il faut aussi installé node js pour pouvoir installer le packet avec npm et pouvoir lancer le serveur,<br> 
@@ -45,6 +45,7 @@ Comamnde à tapez dans git bash pour lancer le Bazzard 404 sur son ordinateur :<
 ```bash
     mkdir Bazzard404
     cd Bazzard404
+    git init --initial-branch "main"
     git remote add origin "https://git.s2.rpn.ch/AmbigapathyV/sitewebroom.git"
     git pull origin main
     npm install
@@ -123,7 +124,8 @@ Il exist plusieur type d'accessait au site :
 ---
 * Filtrer les inputs utilisateurs.
 * Empêché les injections de base de donnée et les injections. 
-* Empêché les injection pug et javascript.
+* Empêché les injections pug et javascript.
+* Réparer add articles.
 * Ajouté une interface utilisateur pour gérer ces chatrooms.
 * Nettoyé le code (Bien avancé).
 
@@ -134,7 +136,6 @@ Il exist plusieur type d'accessait au site :
 * Pouvoir incrusté un article dans une conversation.
 * Ajouté une interface administrateur.
 * Creer un service VOIP.
-* 
 
 ## Ajout
 ---

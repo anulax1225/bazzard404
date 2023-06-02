@@ -28,10 +28,10 @@ router.post('/add', userAuth, async (req, res) => {
                 res.send('Success');
             });
         } catch(err) {
-            res.send('Error')
+            res.send(err)
         }
     } else {
-        res.send('Error')
+        res.send(new Error('Missing parameter'))
     }
 }); 
 
