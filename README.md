@@ -118,7 +118,6 @@ Il exist plusieur type d'accessait au site :
 * Administrateur : Accessait au au profile de tout les utilisateurs, accessait a toute les chats rooms.
 
 ## TO DO liste
----
 
 ### Prioritaire
 ---
@@ -138,7 +137,6 @@ Il exist plusieur type d'accessait au site :
 * Creer un service VOIP.
 
 ## Ajout
----
 
 1. Creer un article.
 1. Ajouté article a la BD.
