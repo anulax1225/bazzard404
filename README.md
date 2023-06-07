@@ -134,6 +134,7 @@ Il exist plusieur type d'accessait au site :
 * Créer des chats rooms publique et privées.
 * Pouvoir incrusté un article dans une conversation.
 * Ajouté une interface administrateur.
+* Creer des serveur minecract à volonté.🃏
 * Creer un service VOIP.
 
 ## Ajout
