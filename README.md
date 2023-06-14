@@ -131,10 +131,9 @@ Il exist plusieur type d'accessait au site :
 ### Annexe
 ---
 * Pouvoir envoyé des photos dans les chatrooms.
-* Créer des chats rooms publique et privées.
 * Pouvoir incrusté un article dans une conversation.
 * Ajouté une interface administrateur.
-* Creer des serveur minecract à volonté.🃏
+* Creer un service minecract à volonté.🃏
 * Creer un service VOIP.
 
 ## Ajout
@@ -157,4 +156,5 @@ Il exist plusieur type d'accessait au site :
 1. Interface vision des données utilisateurs pour les utilisateurs.
 1. Ajouté un access par compte à la BD.
 1. Ajouté des fonctions asynchrones pour query la base de donnée.
+1. Créer des chats rooms publique et privées.
 
