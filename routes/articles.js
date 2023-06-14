@@ -23,13 +23,11 @@ router.post('/add', userAuth, async (req, res) => {
     article.body = req.body.body;
     article.image = req.body.image || null;
     if (article.title && article.author && article.body) {
-        try {
-            await article.save().then(() => {
+            await article.save().catch(err => { 
+                res.send(err)  
+            }).then(() => {
                 res.send('Success');
             });
-        } catch(err) {
-            res.send(err)
-        }
     } else {
         res.send(new Error('Missing parameter'))
     }
@@ -108,7 +106,6 @@ router.get('/:id', async (req, res) => {
     //find the article by id from the id in the url
     await Article.findById(req.params.id).catch((err) => {
         if (err) {
-            console.log(err)
             req.flash('danger', 'Article not found.');
             res.redirect('/articles/');
         }
@@ -132,16 +129,16 @@ router.get('/:id', async (req, res) => {
 //Get all articles
 router.get('/', (req, res) => {
     //Query for all articles
-    Article.find().then((articles, err) => {
+    Article.find().catch((err) => {
         if(err){
-            req.flash('danger', 'Articles not found')
+            req.flash('danger', 'Not article wrotten')
             res.redirect('/articles/')
-        } else {
-            res.render('./articles/articles.pug', {
-                title: 'Articles',
-                articles: articles
-            }); 
         }
+    }).then((articles) => {
+        res.render('./articles/articles.pug', {
+            title: 'Articles',
+            articles: articles
+        }); 
     });
 });
 

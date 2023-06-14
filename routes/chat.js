@@ -26,6 +26,7 @@ router.post('/room/create', userAuth, async (req, res) => {
     var newRoom = new Room;
     newRoom.room_name = req.body.room_name;
     newRoom.room_owner = req.user._id;
+    newRoom.pub_access = req.body.public_state;
     try {
         await newRoom.save().then(() => {
             req.flash('success', 'Room created.');

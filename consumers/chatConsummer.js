@@ -35,6 +35,31 @@ async function fetchMessages(socket, req) {
     });
 }
 
+async function SetSocketBehavior(socket) {
+    socket.on('chat_message', async (msg) => {
+        console.log(`message: ${msg.text} send, from ${msg.sender} => to ${msg.room}`)
+        await saveMsg(msg);
+        io.to(msg.room).emit('chat_message', {
+            sender: msg.sender,
+            text: msg.text,
+            time: moment().unix()
+        });
+    });
+    socket.on('disconnect', () => {
+        console.log('A user disconnected');
+    });
+}
+
+function isInAccessList(room_list, user) {
+    for (room_user in room_list) {
+        if (room_user == user._id) {
+            return true;
+        }
+    }
+    return false
+}
+
+//Setting global access to chat API 
 module.exports = (io) => {
     //core of the chat routing 
     io.on('connection', (socket) => {
@@ -54,31 +79,24 @@ module.exports = (io) => {
                             //Find the room to connect
                             await Room.findOne({room_name: req.room}).then(async (room) => {
                                 if (room) {
-                                    //Notifice room of the new user loged in
-                                    io.to(req.room).emit('chat_message', {
-                                        sender: 'BAZZARD BOT',
-                                        text: `User ${user.username} joined the room.`,
-                                        time: moment().format()
-                                    });
+                                    if (room.pub_access || isInAccessList(room.room_users, user)) {
+                                        //Notifice room of the new users loged in
+                                        io.to(req.room).emit('chat_message', {
+                                            sender: 'BAZZARD BOT',
+                                            text: `User ${user.username} joined the room.`,
+                                            time: moment().format()
+                                        }); 
 
-                                    //Join the socket and the room
-                                    joinRoom(socket, req);
-                                    await fetchMessages(socket, req);
-                                    console.log(`User ${user.username} joined room ${req.room}`);
+                                        //Join the socket and the room
+                                        joinRoom(socket, req);
+                                        await fetchMessages(socket, req);
+                                        //Setting up behavior of the socket
+                                        await SetSocketBehavior(socket);
 
-                                    //Setting up behavior of the socket
-                                    socket.on('chat_message', async (msg) => {
-                                        console.log(`message: ${msg.text} send, from ${msg.sender} => to ${msg.room}`)
-                                        await saveMsg(msg);
-                                        io.to(msg.room).emit('chat_message', {
-                                            sender: msg.sender,
-                                            text: msg.text,
-                                            time: moment().unix()
-                                        });
-                                    });
-                                    socket.on('disconnect', () => {
-                                        console.log('A user disconnected');
-                                    });
+                                        console.log(`User ${user.username} joined public room ${req.room}`);
+                                    } else {
+                                        socket.emit('blocked_room');
+                                    }
 
                                 }  else {
                                     socket.emit('disconnect_from_chat');

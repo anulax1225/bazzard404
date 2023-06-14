@@ -10,7 +10,7 @@ const RoomShema =  mongoose.Schema({
         required: true,
         unique: true
     },
-    room_state: {
+    pub_access: {
         type: Boolean,
         required: false
     },
@@ -19,7 +19,7 @@ const RoomShema =  mongoose.Schema({
         required: false
     },
     room_users: {
-        type: Array,
+        type: [String],
         required: false
     },
 });

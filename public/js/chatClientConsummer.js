@@ -78,11 +78,16 @@ socket.on('chat_message', (msg) => {
 //When disconnected redirect to /chat/hub 
 socket.on('disconnect', () => {
     alert('Disconneted from chat');
-    window.location.href = '/chat/hub'
+    window.location.href = '/chat/hub';
 });
 socket.on('disconnect_from_chat', () => {
     alert('Disconneted from chat');
-    window.location.href = '/chat/hub'
+    window.location.href = '/chat/hub';
+});
+
+socket.on('blocked_room', () => {
+    alert('Unauthorized access to the chat room');
+    window.location.href = '/chat/hub';
 });
 
 initRoom();

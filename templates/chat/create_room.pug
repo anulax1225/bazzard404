@@ -6,7 +6,13 @@ block content
     br
     form(method='POST', action='/chat/room/create')
         #form-groupe
-            label Room name: 
+            label Room name : 
             input.form-control.color-container(id='room_name_input',name='room_name', type='text')
+            br
+            label Room public :
+            div.toggle-switch
+                label.my-label-switch
+                    input.my-input-switch(type='checkbox', name='public_state')
+                    span.slider
         br
         input.btn.btn-primary(type='submit', value='Submit')

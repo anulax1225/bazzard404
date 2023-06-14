@@ -45,8 +45,8 @@ Comamnde à tapez dans git bash pour lancer le Bazzard 404 sur son ordinateur :<
 ```bash
     mkdir Bazzard404
     cd Bazzard404
-    git init --initial-branch "main"
-    git remote add origin "https://git.s2.rpn.ch/AmbigapathyV/sitewebroom.git"
+    git init --initial-branch=main
+    git remote add origin "https://github.com/anulax1225/bazzard404.git"
     git pull origin main
     npm install
     npm run start
@@ -122,7 +122,7 @@ Il exist plusieur type d'accessait au site :
 ### Prioritaire
 ---
 * Filtrer les inputs utilisateurs.
-* Empêché les injections de base de donnée et les injections. 
+* Empêché les injections de base de donnée.
 * Empêché les injections pug et javascript.
 * Réparer add articles.
 * Ajouté une interface utilisateur pour gérer ces chatrooms.
