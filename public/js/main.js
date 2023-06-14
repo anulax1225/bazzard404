@@ -9,10 +9,11 @@ $(document).ready(() => {
           type:'DELETE',
           url: '/articles/'+id,
           success: function(response){
-            alert('Article deleted.')
+            alert('Article deleted.');
             window.location.href='/articles/';
           },
           error: function(err){
+            alert('Cound\'t delete articles');
             window.location.href='/articles/';
           }
         });
@@ -30,8 +31,10 @@ function sendAjax(data) {
       //window.location.href='/articles/';
     },
     success: (res) => {
-      alert('Article added.' + res)
-      window.location.href='/articles/';
+      if (res == 'Success') { 
+        alert('Article added.');
+        window.location.href='/articles/';
+      }
     },
   });
 }

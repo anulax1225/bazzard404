@@ -1,0 +1,35 @@
+extend ../layout 
+
+block content
+    header.join-header
+        h1= room_name 
+        h4 Owner 
+            a(href='/users/profil/'+owner._id) #{owner.username}
+    br
+    if description
+        h3 #{description}
+    else 
+        h3 No description
+    br   
+    if isOwner
+        if room_users 
+            ul.list-group()#room-name
+                each user, i in room_users
+                    li.list-group-item.color-container.shrink
+                        a(href='/users/profil/'+user._id)= user.username 
+                        button.list-member-delete-btn.btn.btn-primary(data-id=user._id) Remove
+        else 
+            h3 You should add members.
+        br
+        input.btn.btn-primary.list-member-add-btn(type='submit', value='Add a member') 
+        input.btn.btn-primary.manage-profil-btn.my-btn-margeur(type='submit', value='Manage room profil')
+    else
+        if room_users 
+            ul.list-group()#room-name
+                each user, i in room_users
+                    li.list-group-item.color-container.shrink
+                        a(href='/users/profil/'+user._id)= user.username 
+        else 
+            h3 No one has been hire yet.
+
+        

@@ -7,23 +7,22 @@ block content
         .chat-container
             .color-container
                 button#leave-btn.btn.color-container Leave Room
+                button#room-profil-btn.btn.color-container.my-btn-margeur Room profil
                 main.chat-main
                     div.chat-sidebar.my-global-container.my-marging
 
                         h3
-                            i.fas.fa-comments Other rooms:
-                        ul.list-group()#room-name
-                            each room, i in rooms
-                                li.list-group-item.color-container.shrink
-                                    a(href='/chat/room/'+room)= room 
+                            i.fas.fa-comments Other rooms :
+                        if(rooms)
+                            ul.list-group()#room-name
+                                each room, i in rooms
+                                    li.list-group-item.color-container.shrink
+                                        a(href='/chat/room/'+room.room_name)= room.room_name 
                         br
                         h3
                             i.fas.fa-users Users :
                         ul.list-group()#users
-                            li.list-group-item.color-container.shrink Alna
-                            li.list-group-item.color-container.shrink Sam 
-                            li.list-group-item.color-container.shrink Greg 
-                            li.list-group-item.color-container.shrink Hugo 
+                            li.list-group-item.color-container.shrink 
                             
                     div.chat-messages.my-global-container.my-marging#chat-messages
                 .chat-form-container

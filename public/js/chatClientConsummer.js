@@ -3,6 +3,7 @@ const socket = io();
 //Getting all the neaded componants of the page
 var divMessages = document.getElementById('chat-messages');
 var btnLeave = document.getElementById('leave-btn');
+var btnRoom = document.getElementById('room-profil-btn');
 var msgInput = document.getElementById('msgInput');
 var msgForm = document.getElementById('messageForm'); 
 
@@ -56,6 +57,12 @@ msgForm.addEventListener('submit', (e) => {
         text: msgData,
     });
 })
+
+//Leave room
+btnRoom.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = `/chat/room/profil/${room}`;
+});
 
 //Leave room
 btnLeave.addEventListener('click', (e) => {

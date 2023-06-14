@@ -11,8 +11,8 @@ const UserShema = mongoose.Schema({
         type: String,
         required: true
     },
-    adminFlag:{
-        type: Boolean,
+    user_pic:{
+        type: String,
         required: false
     },
     token:{
@@ -21,4 +21,4 @@ const UserShema = mongoose.Schema({
     }
 });
 
-const User = module.exports = mongoose.model('UserL', UserShema);
+const User = module.exports = mongoose.model('User', UserShema);

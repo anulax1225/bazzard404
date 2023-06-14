@@ -6,10 +6,10 @@ block content
     br
     form(method='POST', action='/articles/edit/'+article._id)
         #form-groupe
-            label Title: 
+            label Title : 
             input.form-control.color-container(name='title', type='text', value= article.title)
         #form-groupe
-            label Body: 
+            label Body : 
             textarea.form-control.color-container.my-textarea(name='body')= article.body
         br
         input.btn.btn-primary(type='submit', value='Submit')
