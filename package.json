@@ -4,6 +4,7 @@
   "description": "Real Time Chat app",
   "main": "app.js",
   "scripts": {
+    "loadConfig": "install.cmd",
     "start": "node app",
     "dev": "nodemon app"
   },

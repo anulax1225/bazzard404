@@ -48,7 +48,7 @@ Comamnde à tapez dans git bash pour lancer le Bazzard 404 sur son ordinateur :<
     git init --initial-branch=main
     git remote add origin "https://github.com/anulax1225/bazzard404.git"
     git pull origin main
-    npm install
+    npm run loadConfig
     npm run start
 ```
 
