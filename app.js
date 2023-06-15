@@ -29,7 +29,7 @@ db.once('open', () => {
 
 //Check for db error
 db.on('error', (err) => {
-    console.log(err);
+    console.log("An error occured in the DB.");
 });
 
 //Setting view directory

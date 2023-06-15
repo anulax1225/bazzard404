@@ -20,7 +20,7 @@ $(document).ready(() => {
   });
 });
 
-function sendAjax(data) {
+function sendAddArtAjax(data) {
   $.ajax({
     type: 'POST', 
     url: '/articles/add',
@@ -62,7 +62,7 @@ $(document).ready(() => {
 
         var shrink_image = context.canvas.toDataURL(image_file.type);
         //Send ajax request of POST to /articles/add
-        sendAjax({
+        sendAddArtAjax({
             title: name_input.value,
             image: shrink_image,
             body: body_input.value                       
@@ -73,11 +73,19 @@ $(document).ready(() => {
     if(image_file) {
       reader.readAsDataURL(image_file);
     } else {
-      sendAjax({
+      sendAddArtAjax({
         title: name_input.value,
         body: body_input.value
     });
       
     }
+  });
+});
+
+
+$(doment).ready(() => {
+  $('.list-member-add-btn').on('submit', (e) => {
+    var target = $(e.target);
+    var userId = (target.attr('data-id');
   });
 });

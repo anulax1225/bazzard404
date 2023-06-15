@@ -21,8 +21,14 @@ block content
         else 
             h3 You should add members.
         br
-        input.btn.btn-primary.list-member-add-btn(type='submit', value='Add a member') 
-        input.btn.btn-primary.manage-profil-btn.my-btn-margeur(type='submit', value='Manage room profil')
+        hr
+        #form-groupe
+            input.form-control.color-container#member-input
+            br
+            input.btn.btn-primary.list-member-add-btn(type='submit', value='Add a member', data-id=room.room_name) 
+        br
+        hr
+        input.btn.btn-primary.manage-profil-btn(type='submit', value='Manage room profil', data-id=room.room_name)
     else
         if room_users 
             ul.list-group()#room-name
