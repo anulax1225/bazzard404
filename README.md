@@ -2,6 +2,7 @@
 
 ## Résumer
 Le Bazzard 404 est un site web de chat en ligne et de forum.<br>
+Disponible librement pour permettre une alternative au application classique de chat.<br>
 
 ### Possibilité
 * Sans avoir log in(si vous n'etes pas enregistré avec un utilisateur valide), vous ne pourez que voir les publications des utilisateurs.
