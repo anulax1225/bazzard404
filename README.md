@@ -9,9 +9,10 @@ Disponible librement pour permettre une alternative au application classique de 
 * Si vous etes log in vous pourrez :
     * Créer, edité, supprimé vos articles
     * Entré dans des rooms pour discuté avec des gens
-    * Créer une room pour débattre de nouveau sujet
+    * Créer des rooms en public ou privé selon votre envie et créer une whitelist pour celle-ci.
     * Vous aurez aussi access à un espace utilisateur nommé **User Profile**<br>
     qui vous donne access facilement à un sommaire de vos activité sur le site
+
 
 ## Installation du Bazzard 404 <br>
 
@@ -72,7 +73,7 @@ Et voila vous pouvez directement vous connecté en localhost ou en entrant l'add
 Il est totalement écris en *javascript* en utilisant *node js* comme interprêteur côté serveur.<br>
 En utilisant comme framwork principal *express* qui permets de créer diverse application web. 
 
-Le core du program est dans app.js qui contient la plus part des configuration, la connection a la base de donner, le routage de home et la configuration pour routé toute les autres url depuis **./routes**.  
+Le corp du program est dans app.js qui contient la plus part des configuration général du serveur, la connection à la base de donner, le routage de home et la configuration pour routé toute les autres url utiliser par le site.
 
 Les templates sont écris en *pug*(*Jade* pour les intimes), puis sont dynamiquement transformé en page *HTML* avant d'être envoié au client.<br>
 Le designe du site à été fait à l'aide de *bootstrap*. 
