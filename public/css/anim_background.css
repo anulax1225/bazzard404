@@ -1,0 +1,51 @@
+:root {
+    --clr-bubble-1: #78b0b8c4;
+    --halo-bubble-1: #29169442;
+    --clr-bubble-2: #ffffffaf;
+    --halo-bubble-2: #a0999b42;
+}
+
+.container-anim-background {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    overflow: hidden;
+}
+
+.anim-bubbles {
+    position: relative;
+    display: flex;
+}
+
+.anim-bubbles span {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    z-index: -1;
+    background: var(--clr-bubble-1);
+    margin: 0 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 6px var(--halo-bubble-1),
+    0 0 50px var(--clr-bubble-1),
+    0 0 100px var(--clr-bubble-1);
+    animation: animate 15s linear infinite;
+    animation-duration: calc(200s / var(--i));
+}
+
+.anim-bubbles span:nth-child(even) {
+    background: var(--clr-bubble-2);
+    box-shadow: 0 0 0 8px var(--halo-bubble-2),
+    0 0 50px var(--clr-bubble-2),
+    0 0 100px var(--clr-bubble-2);
+}
+
+@keyframes animate {
+    0%
+    {
+        transform: translateY(0vh) scale(0);
+    }
+    100%
+    {
+        transform: translateY(100vh) scale(0.8);
+    }
+}

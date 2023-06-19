@@ -7,10 +7,11 @@ html
             meta#token(content=token) 
         link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.css')
         link(rel='stylesheet', href='/css/style.css')
+        link(rel='stylesheet', href='/css/anim_background.css')
     body
         nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.static-top
             .container.container-fluid
-                a.navbar-brand(href='/') Bazzard 404
+                a.navbar-brand.my-title(href='/') Bazzard 404 
                     img(src='/img/kimLogo.png', alt='...' height='55')
                 button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarSupportedContent', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
                     span.navbar-toggler-icon
@@ -35,19 +36,93 @@ html
                             li.nav-item
                                 a.nav-link(href='/users/login') Log in
         .container
-            br 
-            if errors
-                each error, i in errors
-                    div(class="alert alert-"+typeMsg) #{error.message}
-            != messages('message', locals)
-            block content
-            br
+            .my-front-page
+                br 
+                if errors
+                    each error, i in errors
+                        div(class="alert alert-"+typeMsg) #{error.message}
+                != messages('message', locals)
+                block content
             br
             hr
             div
                 footer.my-page-footer 
                     p Copyright ME &copy; 
-                        a(href='https://git.s2.rpn.ch/AmbigapathyV/sitewebroom/-/tree/main') git 
+                        a(href='https://github.com/anulax1225/bazzard404') git 
+        div.container-anim-background
+            div.anim-bubbles
+                span(style='--i:20')
+                span(style='--i:11')
+                span(style='--i:29')
+                span(style='--i:25')
+                span(style='--i:14')
+                span(style='--i:19')
+                span(style='--i:22')
+                span(style='--i:26')
+                span(style='--i:10')
+                span(style='--i:18')
+                span(style='--i:11')
+                span(style='--i:27')
+                span(style='--i:14')
+                span(style='--i:20')
+                span(style='--i:24')
+                span(style='--i:10')
+                span(style='--i:12')
+                span(style='--i:17')
+                span(style='--i:21')
+                span(style='--i:24')
+                span(style='--i:9')
+                span(style='--i:15')
+                span(style='--i:23')
+                span(style='--i:17')
+                span(style='--i:20')
+                span(style='--i:11')
+                span(style='--i:29')
+                span(style='--i:25')
+                span(style='--i:14')
+                span(style='--i:19')
+                span(style='--i:22')
+                span(style='--i:26')
+                span(style='--i:10')
+                span(style='--i:18')
+                span(style='--i:23')
+                span(style='--i:27')
+                span(style='--i:16')
+                span(style='--i:20')
+                span(style='--i:24')
+                span(style='--i:10')
+                span(style='--i:12')
+                span(style='--i:17')
+                span(style='--i:21')
+                span(style='--i:28')
+                span(style='--i:23')
+                span(style='--i:15')
+                span(style='--i:22')
+                span(style='--i:17')
+                span(style='--i:20')
+                span(style='--i:11')
+                span(style='--i:29')
+                span(style='--i:25')
+                span(style='--i:14')
+                span(style='--i:20')
+                span(style='--i:19')
+                span(style='--i:26')
+                span(style='--i:10')
+                span(style='--i:18')
+                span(style='--i:23')
+                span(style='--i:26')
+                span(style='--i:16')
+                span(style='--i:20')
+                span(style='--i:24')
+                span(style='--i:11')
+                span(style='--i:12')
+                span(style='--i:17')
+                span(style='--i:21')
+                span(style='--i:28')
+                span(style='--i:23')
+                span(style='--i:15')
+                span(style='--i:22')
+                span(style='--i:12')
         script(defer src='/bower_components/jquery/dist/jquery.js')
         script(defer src='/bower_components/bootstrap/dist/js/bootstrap.js')
         script(defer src='/js/main.js')

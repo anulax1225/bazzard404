@@ -13,12 +13,43 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: var(--back-color-app);
     color: var(--front-color);
+	overflow-x: hidden;
+}
+
+h1 {
+	margin: auto;
+	text-align: center;
+	color: white;
+	font-weight: 600;
+	font-family: verdana;
+	padding-bottom: 15px;
+	text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc,
+				 0 3px 0 #ccc, 0 4px 0 #ccc,
+				 0 5px 0 #ccc, 0 6px 0 #ccc,
+				 0 7px 0 #ccc, 0 8px 0 #ccc;
+}
+
+.my-title {
+	margin: auto;
+	text-align: center;
+	color: white;
+	font-weight: 600;
+	font-family: verdana;
+	padding-bottom: 15px;
+	text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc,
+				 0 3px 0 #ccc, 0 4px 0 #ccc,
+				 0 5px 0 #ccc, 0 6px 0 #ccc,
+				 0 7px 0 #ccc, 0 8px 0 #ccc;
+}
+
+.my-front-page {
+	z-index: 1;
 }
 
 .toggle-switch {
     position: relative;
     width: 50px;
-  }
+}
   
 .my-label-switch {
     position: relative;
@@ -109,6 +140,8 @@ body {
 }
 
 .title-center-big {
+	margin: auto;
+	width: 50%;
     font-size: 50px;
     text-align: center;
     border-style: double;
@@ -254,6 +287,8 @@ body {
 
 .invisible {
 	opacity: 0;
+	width: 0px;
+	height: 0px;
 }
 
 #btn-Send {

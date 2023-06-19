@@ -130,10 +130,6 @@ router.get('/:id', async (req, res) => {
 router.get('/', (req, res) => {
     //Query for all articles
     Article.find().catch((err) => {
-        if(err){
-            req.flash('danger', 'Not article wrotten')
-            res.redirect('/articles/')
-        }
     }).then((articles) => {
         res.render('./articles/articles.pug', {
             title: 'Articles',
