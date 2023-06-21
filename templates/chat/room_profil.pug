@@ -16,19 +16,19 @@ block content
             ul.list-group()#room-name
                 each user, i in room_users
                     li.list-group-item.color-container.shrink
-                        a(href='/users/profil/'+user._id)= user.username 
-                        button.list-member-delete-btn.btn.btn-primary(data-id=user._id) Remove
+                        a(href='/users/profil/'+user) #{user} 
+                        button.member-delete-btn.btn.btn-primary.shrink.my-btn-margeur(user-id=user, room-name=room_name) Remove
         else 
             h3 You should add members.
         br
         hr
         #form-groupe
-            input.form-control.color-container#member-input
+            input.form-control.color-container#member-input(type='text')
             br
-            input.btn.btn-primary.list-member-add-btn(type='submit', value='Add a member', data-id=room.room_name) 
+            input.btn.btn-primary#member-add-btn(type='submit', value='Add a member', room-name=room_name) 
         br
         hr
-        input.btn.btn-primary.manage-profil-btn(type='submit', value='Manage room profil', data-id=room.room_name)
+        input.btn.btn-primary#manage-profil-btn(type='submit', value='Manage room profil', room-name=room_name)
     else
         if room_users 
             ul.list-group()#room-name

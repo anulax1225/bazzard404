@@ -7,7 +7,7 @@ $(document).ready(() => {
       //Send ajax request of DELETE to /articles/id 
       await $.ajax({
           type:'DELETE',
-          url: '/articles/'+id,
+          url: `/articles/${id}`,
           success: function(response){
             alert('Article deleted.');
             window.location.href='/articles/';
@@ -83,9 +83,38 @@ $(document).ready(() => {
 });
 
 
-$(doment).ready(() => {
-  $('.list-member-add-btn').on('submit', (e) => {
+$(document).ready(() => {
+  $('#member-add-btn').on('click', (e) => {
     var target = $(e.target);
-    var userId = (target.attr('data-id');
+    var room = target.attr('room-name');
+    var memberInput = document.getElementById('member-input').value;
+    alert(memberInput)
+    $.ajax({
+      type: 'POST',
+      url: `/chat/room/${room}/manageuser`,
+      async: false,
+      data: {
+        new_user: memberInput
+      },
+      success: (res) => {
+        alert(res);
+
+      }
+    });
+  });
+});
+
+$(document).ready(() => {
+  $('.member-delete-btn').on('click', (e) => {
+    var member = $(e.target).attr('user-id');
+    var room = $(e.target).attr('room-name');
+    $.ajax({
+      type: 'DELETE',
+      url: `/chat/room/${room}/manageuser/${user}`,
+      success: (res) => {
+        alert(res);
+        window.location.href = `/chat/room/profil/${room}`
+      }
+    });
   });
 });

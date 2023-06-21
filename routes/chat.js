@@ -44,7 +44,7 @@ router.post('/room/create', userAuth, async (req, res) => {
     }
 });
 
-router.get('/room/profil/:room', (req, res) => {
+router.get('/room/profil/:room', userAuth, (req, res) => {
     Room.find({ room_name: req.params.room }).catch((err) => {
         if(err) {
             req.flash('danger', 'Room doesn\'t exist');
@@ -56,9 +56,9 @@ router.get('/room/profil/:room', (req, res) => {
             User.findById(room.room_owner).then((user) => {
                 if (user) {
                     var isOwner = room.room_owner == req.user._id ? true : false;
-                    console.log(isOwner)
                     res.render('./chat/room_profil.pug', {
                         room_name: room.room_name,
+                        room_users: room.room_users || null,
                         description: room.description,
                         owner: user,
                         isOwner: isOwner,
@@ -71,6 +71,61 @@ router.get('/room/profil/:room', (req, res) => {
         } else {
             req.flash('danger', 'Room doesn\'t exist');
             res.redirect('/chat/hub');
+        }
+    });
+});
+
+function isNotInlist(list, item) {
+    for (var i = 0; i < list.length; i++) {
+        if (list[i] == item) {
+            return false;
+        }
+    }
+    return true;
+}
+
+router.post('/room/:room_name/manageuser', userAuth, async (req, res) => {
+    await Room.findOne({ room_name: req.params.room_name }).catch((err) => { res.send('Couldn\'t find room.') }).then(async (room) => {
+        if (req.user._id == room.room_owner) {
+            await User.findOne({ username: req.body.new_user }).catch((err) => { res.send('Couldn\'t find user.') }).then((user) => {
+                if(user) {
+                    if(isNotInlist(room.room_users, user.username)) {
+                        room.room_users.push(user.username);
+                        try {
+                            Room.updateOne({ _id: room._id}, room).then(() => {
+                                res.send('Success');
+                            });
+                        } catch (err) {
+                            res.send('Error will updating list.')
+                        }
+                    } else {
+                        res.send('All ready a user.')
+                    }
+                } else {
+                    res.send('Unauthorized access.')
+                }
+            });
+        }
+    });
+});
+
+router.delete('/room/:room_name/manageuser/:user', userAuth, (req, res) => {
+    var user_del = req.params.user;
+    var room_target = req.params.room_name;
+    Room.findOne({ room_name: room_target }).catch((err) => { res.send('Room not found') }).then((room) => {
+        if (req.user._id == room.room_owner) {
+            var changed = false
+            for(var i = 0; i < room.room_users.length; i++) {
+                if (room.room_users[i] == user_del) {
+                    changed = true;
+                    room.room_users[i] = null;
+                }
+            }
+            if (changed) {
+                Room.updateOne({ _id: room._id }, room).catch((err) => { res.send('Error while deleting user.') }).then(() => { res.send('Success') });
+            }
+        } else {
+            res.send('Unauthorized access')
         }
     });
 });

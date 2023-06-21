@@ -29,6 +29,11 @@ h1 {
 				 0 7px 0 #ccc, 0 8px 0 #ccc;
 }
 
+a {
+	text-decoration: none;
+	color: var(--front-color)
+}
+
 .my-title {
 	margin: auto;
 	text-align: center;

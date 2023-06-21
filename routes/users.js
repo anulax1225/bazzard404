@@ -116,38 +116,43 @@ router.get('/logout', (req, res) => {
     res.redirect('/users/login')
 });
 
-router.get('/profil/:id', userAuth, async (req, res) => {
-    await User.findById(req.params.id).catch((err) => {
+router.get('/profil/:username', userAuth, async (req, res) => {
+    await User.findOne({ username: req.params.username }).catch((err) => {
         if (err) {
             req.flash('danger', 'User not found.');
             res.redirect('/');
         }
     }).then(async (user) => {
-        await Article.find({ author: user.id }).catch((err) => {   
-            if(err) {
-                req.flash('danger', 'Probleme');
-                res.redirect('/');
-            }
-        }).then(async (articles) => {
-            if (articles.length == 0) {
-                articles = null;
-            }
-            await Room.find({ room_owner: user.id}).then((rooms) => {
-                var lsRooms = [];
-                if(rooms.length == 0) {
-                    lsRooms = null;
-                } else {
-                    rooms.forEach(room => lsRooms.push(room.room_name));
+        if (user) {
+            await Article.find({ author: user._id }).catch((err) => {   
+                if(err) {
+                    req.flash('danger', 'Probleme');
+                    res.redirect('/');
                 }
-                res.render('./users/user_profil.pug', {
-                    title: 'User profil',
-                    userLog: req.user,
-                    user: user.username,
-                    articles: articles,
-                    rooms: lsRooms
+            }).then(async (articles) => {
+                if (articles.length == 0) {
+                    articles = null;
+                }
+                await Room.find({ room_owner: user.id}).then((rooms) => {
+                    var lsRooms = [];
+                    if(rooms.length == 0) {
+                        lsRooms = null;
+                    } else {
+                        rooms.forEach(room => lsRooms.push(room.room_name));
+                    }
+                    res.render('./users/user_profil.pug', {
+                        title: 'User profil',
+                        userLog: req.user,
+                        user: user.username,
+                        articles: articles,
+                        rooms: lsRooms
+                    });
                 });
             });
-        });
+        } else {
+            req.flash('danger', 'User not found.');
+            res.redirect('/');
+        }
     });
 });
 
