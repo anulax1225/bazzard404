@@ -1,4 +1,4 @@
-const socket = io();
+const socket = io('/chat');
 
 //Getting all the neaded componants of the page
 var divMessages = document.getElementById('chat-messages');
@@ -46,6 +46,11 @@ function outputMessageDOM(msg) {
     divMessages.scrollTo(0, divMessages.scrollHeight);
 }
 
+function alertRd(msg, url = '/chat/hub') {
+    alert(msg);
+    window.location.href = url;
+}
+
 //When the client submits a new message the socket emit it to the server
 msgForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -84,17 +89,23 @@ socket.on('chat_message', (msg) => {
 
 //When disconnected redirect to /chat/hub 
 socket.on('disconnect', () => {
-    alert('Disconneted from chat');
-    window.location.href = '/chat/hub';
+    alertRd('Disconneted from chat');
 });
-socket.on('disconnect_from_chat', () => {
-    alert('Disconneted from chat');
-    window.location.href = '/chat/hub';
+
+socket.on('user_not_found', () => {
+    alertRd('User authentification failed');
+});
+
+socket.on('user_token_incorrect', () => {
+    alertRd('User authentification failed');
+});
+
+socket.on('room_not_found', () => {
+    alertRd('Room not found');
 });
 
 socket.on('blocked_room', () => {
-    alert('Unauthorized access to the chat room');
-    window.location.href = '/chat/hub';
+    alertRd('Unauthorized access to the chat room');
 });
 
 initRoom();

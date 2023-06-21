@@ -13,12 +13,16 @@ router.get('/hub', userAuth, (req, res) => {
     });
 });
 
+//POST room to go to
+router.post('/hub', (req, res) => {
+    res.redirect('/chat/room/'+req.body.room);
+});
+
 //GET page to create a room
 router.get('/room/create', userAuth, (req, res) => {
     res.render('./chat/create_room.pug', {
        title: 'Create a new room',
     });
-
 });
 
 //POST a room and creation of ot in the database
@@ -173,9 +177,8 @@ router.get('/room/:room_name', userAuth, async (req, res) => {
     });
 });
 
-//POST room to go to
-router.post('/hub', (req, res) => {
-    res.redirect('/chat/room/'+req.body.room);
+router.get('/vocal', (req, res) => {
+    res.render('./chat/vocal_call.pug')
 });
 
 module.exports = router;

@@ -14,6 +14,7 @@ const ChatRouter = require('./routes/chat')
 const config = require('./config/database');
 const configPassport = require('./config/passport');
 const chatConsummer = require('./consumers/chatConsummer');
+const webRtcStream = require('./consumers/webRtcConsumer');
 
 //creating web app
 const app = express();
@@ -32,7 +33,7 @@ db.on('error', (err) => {
     console.log("An error occured in the DB.");
 });
 
-//Setting view directory
+//Setting view directory and template language
 app.set('views', path.join(__dirname, 'templates'));
 app.set('view engine', 'pug');
 
@@ -90,7 +91,10 @@ const options = {
 //Setting up Server to run
 const server = https.createServer(options, app);
 const io = new Server(server);
-chatConsummer(io);
+
+//Adding the consumers on top of the http server
+chatConsummer(io.of('/chat'));
+webRtcStream(io.of('/webrtc'));
 
 server.listen(process.argv[2], () => {
     console.log('listening on *:' + process.argv[2]);

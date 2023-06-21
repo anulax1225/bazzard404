@@ -106,7 +106,7 @@ module.exports = (io) => {
                             socket.emit('user_token_incorrect');
                         }
                     } else {
-                        socket.emit('disconnect_from_chat');
+                        socket.emit('user_not_found');
                     }
                 });
         });

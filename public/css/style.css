@@ -1,6 +1,9 @@
 :root {
-    --back-color-app: rgb(15, 15, 15);
-    --front-color: white;
+    --back-color-app: rgb(76, 56, 255);
+    --front-color: rgb(255, 255, 255);
+	--link-color: rgb(0, 14, 136);
+	--chat-front-color: var(--front-color);
+	--chat-back-color: var(--back-color-app);
 }
 
 * {
@@ -9,17 +12,35 @@
 	margin: 0px;
 }
 
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--back-color-app);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--front-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
+	font-size: 25px;
     background-color: var(--back-color-app);
     color: var(--front-color);
 	overflow-x: hidden;
+	overflow-y: scroll;
 }
 
 h1 {
 	margin: auto;
 	text-align: center;
-	color: white;
+	color: var(--front-color);
 	font-weight: 600;
 	font-family: verdana;
 	padding-bottom: 15px;
@@ -34,6 +55,10 @@ a {
 	color: var(--front-color)
 }
 
+a:hover {
+	color: var(--link-color)
+}
+
 .my-title {
 	margin: auto;
 	text-align: center;
@@ -45,6 +70,10 @@ a {
 				 0 3px 0 #ccc, 0 4px 0 #ccc,
 				 0 5px 0 #ccc, 0 6px 0 #ccc,
 				 0 7px 0 #ccc, 0 8px 0 #ccc;
+}
+
+.my-small-font {
+	font-size: 20px;
 }
 
 .my-front-page {
@@ -165,18 +194,18 @@ a {
 }
 
 .my-page-footer {
-	position: absolute;
+	position: relative;
 	bottom: 0;
 }
 
 .my-global-container {
-	border-color: var(--front-color);
+	border-color: var(--chat-front-color);
 	border-width: 1px;
 	border-style: solid;
 }
 
 .my-soup-border {
-	border-radius: 15px;
+	border-radius: 50px;
 }
 
 .my-marging {
@@ -194,7 +223,7 @@ a {
 
 .chat-container {
 	max-width: 1100px;
-	background: var(--back-color-app);
+	background: var(--chat-back-color);
 	margin: 30px auto;
 	overflow: hidden;
 }
@@ -205,7 +234,7 @@ a {
 }
 
 .chat-sidebar {
-	border-color: var(--front-color);
+	border-color: var(--chat-front-color);
 	padding: 20px 20px 60px;
 	overflow-y: scroll;
 	max-height: 500px;
@@ -229,13 +258,13 @@ a {
 }
 
 .chat-sidebar ul li a {
-	color: var(--front-color);
+	color: var(--chat-front-color);
 	text-decoration: none;
 }
 
 .chat-messages {
 	padding: 30px;
-	background-color: var(--front-color);
+	background-color: var(--chat-front-color);
 	overflow-y: scroll;
 	color:var(--front-color);
 	max-height: 500px;
@@ -246,7 +275,7 @@ a {
 	padding-top: 0px;
 	padding-bottom: 1px;
 	margin-bottom: 10px;
-	background-color: var(--back-color-app);
+	background-color: var(--chat-back-color);
 	border-radius: 5px;
 	overflow-wrap: break-word;
 }
@@ -254,7 +283,7 @@ a {
 .chat-messages .message .meta {
 	font-size: 15px;
 	font-weight: bold;
-	color: var(--front-color);
+	color: var(--chat-front-color);
 	opacity: 0.7;
 	margin-bottom: 1px;
 }
@@ -266,7 +295,7 @@ a {
 
 .chat-form-container {
 	padding: 20px 30px;
-	background-color: var(--back-color-app);
+	background-color: var(--chat-back-color);
 }
 
 .chat-form-container form {

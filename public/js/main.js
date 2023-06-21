@@ -26,14 +26,12 @@ function sendAddArtAjax(data) {
     url: '/articles/add',
     data: data,
     async: false,
-    error: (err) => {
-      alert("Couldn't added article" + err)
-      //window.location.href='/articles/';
-    },
     success: (res) => {
       if (res == 'Success') { 
         alert('Article added.');
-        window.location.href='/articles/';
+        window.location.href=`/articles/`;
+      } else {
+        alert('Couldn\'t add article');
       }
     },
   });
@@ -97,8 +95,10 @@ $(document).ready(() => {
         new_user: memberInput
       },
       success: (res) => {
-        alert(res);
-
+        if (res == 'Success') {
+          alert(res);
+          window.location.href=`/chat/room/profil/${room}`;
+        } 
       }
     });
   });
@@ -110,10 +110,12 @@ $(document).ready(() => {
     var room = $(e.target).attr('room-name');
     $.ajax({
       type: 'DELETE',
-      url: `/chat/room/${room}/manageuser/${user}`,
+      url: `/chat/room/${room}/manageuser/${member}`,
       success: (res) => {
-        alert(res);
-        window.location.href = `/chat/room/profil/${room}`
+        if (res == 'Success') {
+          alert(res);
+          window.location.href=`/chat/room/profil/${room}`;
+        }    
       }
     });
   });

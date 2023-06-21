@@ -15,11 +15,12 @@ block content
         if room_users 
             ul.list-group()#room-name
                 each user, i in room_users
-                    li.list-group-item.color-container.shrink
-                        a(href='/users/profil/'+user) #{user} 
-                        button.member-delete-btn.btn.btn-primary.shrink.my-btn-margeur(user-id=user, room-name=room_name) Remove
+                    if user
+                        li.list-group-item.color-container.shrink
+                            a(href='/users/profil/'+user) #{user} 
+                            button.member-delete-btn.btn.btn-primary.shrink.my-btn-margeur(user-id=user, room-name=room_name) Remove
         else 
-            h3 You should add members.
+            h3 Still no members?
         br
         hr
         #form-groupe
