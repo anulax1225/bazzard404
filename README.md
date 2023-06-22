@@ -36,7 +36,7 @@ Vous devez aussi aller modifier le fichier /mongodb/server/6.0/bin/mongod.cfg
 Puis il faudra modifier le fichier /config/database.js pour mettre le lien de connection à votre base de donnée : 
 ```javascript
     module.exports = {
-    database: 'mongodb://nom_utilisateur:mot_passe@IP_base_de_donner:PORT/bazzard404'
+        database: 'mongodb://nom_utilisateur:mot_passe@IP_base_de_donner:PORT/bazzard404'
     }
 ```
 * Il faut aussi installé node js pour pouvoir installer le packet avec npm et pouvoir lancer le serveur,<br> 

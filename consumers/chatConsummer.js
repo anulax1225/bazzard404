@@ -66,10 +66,10 @@ module.exports = (io) => {
     io.on('connection', (socket) => {
         socket.on('join_room', async (req) => {
             //Find the user object by username
-            await User.findOne({username: req.username}).catch((err) => {
+            await User.findOne({ username: req.username }).catch((err) => {
                 if(err) {
                     //If false username
-                    socket.emit('disconnect_from_chat');
+                    socket.emit('user_not_found');
                 }
                 }).then(async (user) => {
                     //If user exist
@@ -86,7 +86,6 @@ module.exports = (io) => {
                                             text: `User ${user.username} joined the room.`,
                                             time: moment().format()
                                         }); 
-
                                         //Join the socket and the room
                                         joinRoom(socket, req);
                                         await fetchMessages(socket, req);

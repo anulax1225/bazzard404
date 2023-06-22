@@ -6,6 +6,7 @@ var btnLeave = document.getElementById('leave-btn');
 var btnRoom = document.getElementById('room-profil-btn');
 var msgInput = document.getElementById('msgInput');
 var msgForm = document.getElementById('messageForm'); 
+var btnCall = document.getElementById('call-btn');
 
 var username, room, token = '';
 
@@ -63,10 +64,16 @@ msgForm.addEventListener('submit', (e) => {
     });
 })
 
-//Leave room
+//Go to voice call
+btnCall.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = `/chat/room/${room}/vocal`;
+});
+
+//Go to room profile
 btnRoom.addEventListener('click', (e) => {
     e.preventDefault();
-    window.location.href = `/chat/room/profil/${room}`;
+    window.location.href = `/chat/room/${room}/profil`;
 });
 
 //Leave room

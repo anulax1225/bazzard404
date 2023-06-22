@@ -48,7 +48,7 @@ router.post('/room/create', userAuth, async (req, res) => {
     }
 });
 
-router.get('/room/profil/:room', userAuth, (req, res) => {
+router.get('/room/:room/profil', userAuth, (req, res) => {
     Room.find({ room_name: req.params.room }).catch((err) => {
         if(err) {
             req.flash('danger', 'Room doesn\'t exist');
@@ -177,7 +177,7 @@ router.get('/room/:room_name', userAuth, async (req, res) => {
     });
 });
 
-router.get('/vocal', (req, res) => {
+router.get('/chat/room/:room/vocal', (req, res) => {
     res.render('./chat/vocal_call.pug')
 });
 
